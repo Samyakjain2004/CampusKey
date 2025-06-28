@@ -114,8 +114,11 @@ CampusKey/
 ```
 
 ## 📊 Flowchart Diagrams
+
+### Encryption Flow
 ![Encryption Flowchart](encryption_flow.png)
 
+### Decryption Flow
 ![Decryption Flowchart](decryption_flow.png)
 
 
