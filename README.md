@@ -60,6 +60,63 @@ Dependencies include:
 - Extract LSBs from Y → Decrypt using QLM → Decompress.
 - Reconstruct QR Code → Scan → Verify against database.
 
+## 🗂️ Project Structure
+
+```bash
+CampusKey/
+├── FQLM1.py           # First phase of chaotic encryption using 5D QLM
+├── FQLM2.py           # Second phase of chaotic encryption using 5D QLM
+├── FYCBCRDec.py       # Converts stego image to YCbCr and extracts LSBs
+├── FYCBCREnc.py       # Embeds encrypted data into Y channel of YCbCr
+├── Frleencode.py      # Run-Length Encodes the QR binary
+├── Frledecode.py      # Decodes the RLE-compressed bitstream
+├── XOR1.py            # XOR encryption with QLM1 output
+├── XOR2.py            # XOR encryption with QLM2 output
+├── cover_image.png    # Base image used to hide QR code
+├── qr code.jpg        # Sample QR code image (to be embedded)
+└── README.md
+
+```
+
+### 🔐 Encryption Flow
+
+```bash
+[qr code.jpg]
+    ↓
+[Frleencode.py] → Run-Length Encoding of QR binary
+    ↓
+[FQLM1.py] + [XOR1.py] → First layer of chaotic encryption
+    ↓
+[FQLM2.py] + [XOR2.py] → Second layer of chaotic encryption
+    ↓
+[FYCBCREnc.py] → Embed into Y channel using LSB in cover_image.png
+
+```
+
+### 🔓 Decryption Flow
+
+```bash
+[Stego Image]
+    ↓
+[FYCBCRDec.py] → Extract LSBs from Y channel
+    ↓
+[XOR2.py] + [FQLM2.py] → Reverse second XOR
+    ↓
+[XOR1.py] + [FQLM1.py] → Reverse first XOR
+    ↓
+[Frledecode.py] → Run-Length Decode
+    ↓
+[Reconstruct QR] → Scan and verify
+
+
+```
+
+## 📊 Flowchart Diagrams
+![Encryption Flowchart](encryption_flow.png)
+
+![Decryption Flowchart](decryption_flow.png)
+
+
 ## 🌱 Future Scope
 - 🔍 AI-based tamper detection
 - 🔗 Blockchain-based ID verification
