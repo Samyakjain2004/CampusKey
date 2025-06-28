@@ -1,4 +1,4 @@
-# CampusKey
+# 🔑CampusKey
 
 CampusKey is a robust digital identity verification system that securely embeds user-specific QR codes into ID card images using advanced LSB steganography and 5D Quantum Logistic Map encryption. Designed primarily for educational institutions, it ensures tamper-resistant and invisible ID encoding, with real-time database verification support.
 
@@ -74,6 +74,8 @@ CampusKey/
 ├── XOR2.py            # XOR encryption with QLM2 output
 ├── cover_image.png    # Base image used to hide QR code
 ├── qr code.jpg        # Sample QR code image (to be embedded)
+├── encryption_flow.png    # Flow chart to show complete encryption
+├── decryption_flow.png    # Flow chart to show complete decryption
 └── README.md
 
 ```
